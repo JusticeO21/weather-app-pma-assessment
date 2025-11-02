@@ -1,0 +1,31 @@
+# Ignore virtual environments
+venv/
+.env/
+.env.local
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore system and editor files
+.DS_Store
+*.log
+*.sqlite3
+*.db
+
+# Ignore Git files
+.git/
+.gitignore
+
+# Ignore local configs or secrets
+*.pem
+*.key
+*.crt
+*.json
+
+# Ignore build artifacts
+build/
+dist/
+*.egg-info/
