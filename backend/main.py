@@ -10,8 +10,8 @@ Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI(
-    title="Fake News Detector API",
-    description="API for detecting fake or real news using 2 ML models",
+    title="Weather App API",
+    description="API for detecting weather",
     version="1.0.0",
 )
 
@@ -28,3 +28,7 @@ for _, module_name, _ in pkgutil.iter_modules(routes_pkg.__path__):
     if hasattr(module, "router"):
         app.include_router(module.router)
         print(f"✅ Loaded routes from: {module_name}")
+
+@app.get("/")
+def root():
+    return {"message": "Weather App API"}
