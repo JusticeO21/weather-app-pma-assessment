@@ -1,0 +1,59 @@
+# ===== General =====
+.DS_Store
+Thumbs.db
+*.log
+.env
+
+# ===== Python (Backend) =====
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.db
+*.pid
+*.pyc
+*.pyo
+*.pyd
+/venv/
+/backend/venv/
+/backend/__pycache__/
+/backend/uploads/
+/backend/.pytest_cache/
+/backend/.mypy_cache/
+/backend/.ruff_cache/
+
+# ===== FastAPI / Uvicorn =====
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+
+# ===== Node / React / Next.js (Frontend) =====
+/frontend/node_modules/
+/frontend/.next/
+/frontend/dist/
+/frontend/out/
+/frontend/build/
+/frontend/.turbo/
+/frontend/.vercel/
+/frontend/.cache/
+/frontend/.eslintcache
+
+# ===== Coverage / Testing =====
+coverage/
+*.cover
+*.py,cover
+.hypothesis/
+pytestdebug.log
+
+# ===== OS & IDE Files =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# ===== Other =====
+/uploads/
