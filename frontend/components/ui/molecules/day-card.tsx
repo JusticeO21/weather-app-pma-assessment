@@ -9,15 +9,23 @@ interface DayCardProps {
   icon: string;
 }
 
-export const DayCard = ({ day, temp_min, temp_max, description, icon }: DayCardProps) => {
-  
+export const DayCard = ({
+  day,
+  temp_min,
+  temp_max,
+  description,
+  icon,
+}: DayCardProps) => {
   return (
-    <Card variant="default" className="flex flex-col items-center justify-center py-3 hover:shadow-md transition-shadow gap-2 !bg-gray-50">
-      <Text variant="caption" className='font-bold'>
+    <Card
+      variant="default"
+      className="flex flex-col items-center justify-center py-3 hover:shadow-md transition-shadow gap-2 !bg-gray-50"
+    >
+      <Text variant="caption" className="font-bold">
         {day}
       </Text>
       <div>
-        <WeatherIcon as="icon"  icon={icon} className="w-15 h-15" />
+        <WeatherIcon as="icon" icon={icon} className="w-15 h-15" />
       </div>
       <div className="flex items-center gap-2">
         <Text variant="body" className="text-gray-800 text-sm">

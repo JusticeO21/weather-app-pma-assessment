@@ -20,7 +20,11 @@ interface SearchBarProps {
  * @param placeholder - Input placeholder text
  * @param loading - Whether the search bar is loading
  */
-export const SearchBar = ({ onSearch, loading = false, placeholder = 'Search for places ...', }: SearchBarProps) => {
+export const SearchBar = ({
+  onSearch,
+  loading = false,
+  placeholder = 'Search for places ...',
+}: SearchBarProps) => {
   const [query, setQuery] = useState('');
   const [error, setError] = useState('');
 

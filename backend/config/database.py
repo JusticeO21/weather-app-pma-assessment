@@ -9,9 +9,7 @@ DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./backend/local.db")
 
 # Only pass SQLite-specific args if using SQLite
 if DATABASE_URL.startswith("sqlite"):
-    engine = create_engine(
-        DATABASE_URL, connect_args={"check_same_thread": False}
-    )
+    engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 else:
     engine = create_engine(DATABASE_URL)  # PostgreSQL does NOT need connect_args
 

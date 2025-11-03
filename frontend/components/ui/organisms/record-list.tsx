@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { RecordCard } from '../molecules/record-card';
 import { Skeleton, Text } from '../atoms';

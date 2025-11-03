@@ -2,7 +2,11 @@ import { toast } from 'sonner';
 
 type ToastType = 'success' | 'error' | 'loading' | 'info' | 'warning';
 
-export const showToast = (type: ToastType, message: string, duration = 3000) => {
+export const showToast = (
+  type: ToastType,
+  message: string,
+  duration = 3000,
+) => {
   switch (type) {
     case 'success':
       return toast.success(message, { duration });

@@ -1,4 +1,11 @@
-import { Tornado, Waves, CircleGauge, WindArrowDown, ArrowUp, ArrowDown } from 'lucide-react';
+import {
+  Tornado,
+  Waves,
+  CircleGauge,
+  WindArrowDown,
+  ArrowUp,
+  ArrowDown,
+} from 'lucide-react';
 import { MetricConfig } from '@/types/record';
 import { TodaysInsight } from '@/types/weather';
 import { Text } from '@/components/ui/atoms';
@@ -6,7 +13,9 @@ import { Text } from '@/components/ui/atoms';
 /**
  * Generate metric configurations for today's weather highlights
  */
-export const getTodaysHighlightConfigs = (todaysInsight: TodaysInsight): MetricConfig[] => [
+export const getTodaysHighlightConfigs = (
+  todaysInsight: TodaysInsight,
+): MetricConfig[] => [
   {
     title: 'Humidity',
     value: todaysInsight.humidity,

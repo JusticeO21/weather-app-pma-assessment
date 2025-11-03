@@ -27,7 +27,8 @@ export const Button = ({
   rightIcon,
   ...props
 }: ButtonProps) => {
-  const baseStyles = 'rounded-full font-medium transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles =
+    'rounded-full font-medium transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed';
 
   const variantStyles = {
     primary: 'bg-blue-500 hover:bg-blue-600 text-white',

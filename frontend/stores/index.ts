@@ -11,30 +11,30 @@ export const useWeatherStore = create<WeatherSlice>()(
   devtools(
     immer((...args) => ({
       ...createWeatherSlice(...args),
-    }))
-  )
+    })),
+  ),
 );
 
 export const useForecastStore = create<ForecastSlice>()(
   devtools(
     immer((...args) => ({
       ...createForecastSlice(...args),
-    }))
-  )
+    })),
+  ),
 );
 
 export const useRecordStore = create<RecordSlice>()(
   devtools(
     immer((...args) => ({
       ...createRecordSlice(...args),
-    }))
-  )
+    })),
+  ),
 );
 
 export const useDialogStore = create<DialogSlice>()(
   devtools(
     immer((...args) => ({
       ...createDialogSlice(...args),
-    }))
-  )
+    })),
+  ),
 );

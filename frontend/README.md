@@ -5,6 +5,7 @@ A modern, responsive weather application built with Next.js 16, TypeScript, and 
 ## 🌟 Features
 
 ### Core Functionality
+
 - **Real-time Weather Data**: Get current weather conditions for any location
 - **7-Day Forecast**: View detailed weather forecasts for the upcoming week
 - **Today's Highlights**: Comprehensive weather metrics including humidity, wind status, visibility, pressure, and sunrise/sunset times
@@ -15,6 +16,7 @@ A modern, responsive weather application built with Next.js 16, TypeScript, and 
 - **Responsive Design**: Optimized for desktop, tablet, and mobile devices
 
 ### User Experience
+
 - **Intuitive UI**: Clean, modern interface with smooth animations
 - **Loading States**: Skeleton loaders and loading indicators throughout the app
 - **Error Handling**: Comprehensive error handling with user-friendly messages
@@ -24,25 +26,30 @@ A modern, responsive weather application built with Next.js 16, TypeScript, and 
 ## 🛠️ Tech Stack
 
 ### Frontend Framework
+
 - **Next.js 16** - React framework with App Router
 - **React 19** - UI library
 - **TypeScript** - Type-safe JavaScript
 
 ### State Management
+
 - **Zustand** - Lightweight state management with devtools and immer middleware
 
 ### Styling & UI
+
 - **Tailwind CSS 4** - Utility-first CSS framework
 - **Lucide React** - Beautiful icon library
 - **Sonner** - Toast notification system
 - **Leaflet** - Interactive maps (for location visualization)
 
 ### Development Tools
+
 - **ESLint** - Code linting
 - **PostCSS** - CSS processing
 - **Geist Fonts** - Modern typography
 
 ### Key Dependencies
+
 - `class-variance-authority` - Component variant utilities
 - `clsx` - Conditional CSS classes
 - `date-fns` - Date manipulation
@@ -83,18 +90,21 @@ my-app/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js 18+ and npm/pnpm/yarn
 - A weather API service (the app expects `NEXT_PUBLIC_API_URL` environment variable)
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd my-app
    ```
 
 2. **Install dependencies**
+
    ```bash
    # Using pnpm (recommended)
    pnpm install
@@ -109,11 +119,13 @@ my-app/
 3. **Set up environment variables**
 
    Create a `.env.local` file in the root directory:
+
    ```env
    NEXT_PUBLIC_API_URL=your-weather-api-endpoint
    ```
 
 4. **Run the development server**
+
    ```bash
    # Using pnpm
    pnpm dev
@@ -132,11 +144,13 @@ my-app/
 ## 📖 Usage
 
 ### Viewing Weather Data
+
 - The app automatically detects your location and displays current weather
 - Use the search bar in the sidebar to search for weather in other locations
 - Switch between "Today" and "Week" views in the forecast section
 
 ### Managing Weather Records
+
 - Click "Save Record" to save current weather data
 - Navigate to the "Records" page to view all saved records
 - Use the search bar to filter records by location
@@ -144,6 +158,7 @@ my-app/
 - Export records to CSV using the "Export All" button
 
 ### Record Details
+
 - View comprehensive weather metrics for saved records
 - Export individual records to CSV
 - Delete records with confirmation dialog
@@ -151,21 +166,27 @@ my-app/
 ## 🏗️ Architecture
 
 ### State Management
+
 The app uses Zustand for state management with separate stores for different domains:
+
 - **Weather Store**: Current weather data and today's insights
 - **Forecast Store**: 7-day weather forecast
 - **Record Store**: Saved weather records management
 - **Dialog Store**: Modal and dialog state
 
 ### Component Architecture
+
 Following Atomic Design principles:
+
 - **Atoms**: Basic UI elements (Button, Input, Card)
 - **Molecules**: Composite components (MetricCard, DayCard)
 - **Organisms**: Complex components (Header, Sidebar, RecordList)
 - **Templates**: Page-level layouts (Home, Records, RecordDetail)
 
 ### API Integration
+
 The app communicates with a backend API for:
+
 - Weather data fetching (`POST /weather`)
 - Forecast data (`POST /forecast`)
 - Records management (CRUD operations on `/records`)
@@ -180,13 +201,16 @@ The app communicates with a backend API for:
 ## 🌐 Deployment
 
 ### Vercel (Recommended)
+
 1. Push your code to GitHub
 2. Connect your repository to Vercel
 3. Add environment variables in Vercel dashboard
 4. Deploy automatically
 
 ### Other Platforms
+
 The app can be deployed to any platform supporting Next.js:
+
 - Netlify
 - Railway
 - DigitalOcean App Platform

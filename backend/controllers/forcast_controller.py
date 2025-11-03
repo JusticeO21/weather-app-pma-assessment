@@ -6,6 +6,8 @@ import os
 
 load_dotenv()
 API_KEY = os.getenv("OPENWEATHER_API_KEY")
+
+
 async def get_forecast_controller(loc: str):
 
     if "," in loc:

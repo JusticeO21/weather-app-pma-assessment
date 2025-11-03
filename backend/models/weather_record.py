@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, DateTime, JSON
 from datetime import datetime
 from config.database import Base
 
+
 class WeatherRecord(Base):
     __tablename__ = "weather_records"
 

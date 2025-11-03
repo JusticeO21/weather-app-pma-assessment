@@ -16,15 +16,12 @@ interface SidebarProps {
  * @param onSearch - Callback function when search is submitted
  */
 
-
-export const Sidebar = ({  onSearch }: SidebarProps) => {
-
+export const Sidebar = ({ onSearch }: SidebarProps) => {
   const { main, location, country, loading } = useWeatherStore();
 
-  
   return (
     <aside className="w-full lg:w-[400px] flex-shrink-0 sticky top-0 bottom-0 h-screen p-6 shadow-lg bg-gray-100">
-      <div className="flex flex-col gap-5 h-full"> 
+      <div className="flex flex-col gap-5 h-full">
         <SearchBar onSearch={onSearch} />
         <WeatherCard
           temperature={main.temp}

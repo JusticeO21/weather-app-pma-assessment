@@ -1,10 +1,13 @@
-"use client";
+'use client';
 
 import { useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { Button, Text, Skeleton } from '@/components/ui/atoms';
 import { Dialog } from '../organisms/dialog';
-import { RecordDetailHeader, RecordMetricsGrid } from '@/components/ui/organisms';
+import {
+  RecordDetailHeader,
+  RecordMetricsGrid,
+} from '@/components/ui/organisms';
 import { useRecordDetail } from '@/hooks/useRecordDetail';
 import { useRecordActions } from '@/hooks/useRecordActions';
 import { getMetricConfigs } from '@/lib/record-utils';
@@ -15,7 +18,7 @@ interface RecordDetailTemplateProps {
 
 export function RecordDetailTemplate({ id }: RecordDetailTemplateProps) {
   const router = useRouter();
-  
+
   const { record, loading, deleteLoading, error } = useRecordDetail(id);
   const { handleDelete, handleExport, isExporting } = useRecordActions(id);
 

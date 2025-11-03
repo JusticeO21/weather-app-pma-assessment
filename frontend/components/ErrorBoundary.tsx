@@ -23,7 +23,10 @@ interface ErrorBoundaryState {
  * @param children - Child components to monitor for errors
  * @param fallback - Optional custom fallback UI
  */
-export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export class ErrorBoundary extends Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
@@ -59,7 +62,8 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
               Something went wrong
             </Text>
             <Text variant="body" className="text-gray-600 mb-6">
-              We encountered an unexpected error. Please try refreshing the page.
+              We encountered an unexpected error. Please try refreshing the
+              page.
             </Text>
             {this.state.error && (
               <details className="mb-6 text-left">
@@ -75,7 +79,10 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
               <Button onClick={this.handleReset} variant="primary">
                 Try Again
               </Button>
-              <Button onClick={() => window.location.reload()} variant="secondary">
+              <Button
+                onClick={() => window.location.reload()}
+                variant="secondary"
+              >
                 Refresh Page
               </Button>
             </div>

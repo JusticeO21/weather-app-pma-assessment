@@ -21,12 +21,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           className={`w-full bg-transparent outline-none text-gray-700 placeholder:text-gray-400 ${className}`}
           {...props}
         />
-        {error && (
-          <p className="text-xs text-red-500 mt-1">{error}</p>
-        )}
+        {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
       </div>
     );
-  }
+  },
 );
 
 Input.displayName = 'Input';

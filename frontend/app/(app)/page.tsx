@@ -6,7 +6,7 @@ import { Home } from '@/components/ui/template/home';
 export default function App() {
   return (
     // <ErrorBoundary>
-      <Home />
+    <Home />
     // </ErrorBoundary>
   );
 }

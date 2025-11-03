@@ -33,7 +33,10 @@ export const useSaveWeatherRecord = () => {
     if (!canSave(location)) {
       const remainingMs = getRemainingCooldown(location);
       const remainingMinutes = Math.ceil(remainingMs / (60 * 1000));
-      showToast('error', `Please wait ${remainingMinutes} more minutes before saving data for ${location} again`);
+      showToast(
+        'error',
+        `Please wait ${remainingMinutes} more minutes before saving data for ${location} again`,
+      );
       return;
     }
 
@@ -51,7 +54,10 @@ export const useSaveWeatherRecord = () => {
       showToast('success', 'Weather record saved successfully!');
     } catch (error) {
       console.error('Failed to save record:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Failed to save weather record';
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : 'Failed to save weather record';
       showToast('error', errorMessage);
     } finally {
       setIsSaving(false);

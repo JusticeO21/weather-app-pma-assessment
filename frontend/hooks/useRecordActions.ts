@@ -20,7 +20,8 @@ export const useRecordActions = (id: string) => {
     openDialog({
       type: 'delete',
       title: 'Delete Record',
-      message: 'Are you sure you want to delete this record? This action cannot be undone.',
+      message:
+        'Are you sure you want to delete this record? This action cannot be undone.',
       data: { id },
       onConfirm: async () => {
         try {

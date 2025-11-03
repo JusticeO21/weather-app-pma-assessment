@@ -15,7 +15,11 @@ interface CardProps {
  * @param className - Additional CSS classes
  * @param variant - Card style variant (default or highlight)
  */
-export const Card = ({ children, className = '', variant = 'default' }: CardProps) => {
+export const Card = ({
+  children,
+  className = '',
+  variant = 'default',
+}: CardProps) => {
   const baseStyles = 'rounded-3xl p-6 shadow-sm';
   const variantStyles = {
     default: 'bg-white',

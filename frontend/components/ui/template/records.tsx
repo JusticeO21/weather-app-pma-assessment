@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useRecordStore } from '@/stores';
 import { useEffect, useState } from 'react';
@@ -10,7 +10,8 @@ import { exportRecords } from '@/lib/api/records';
 import { showToast } from '@/lib/toast';
 
 export function RecordsTemplate() {
-  const { records, loading, error, fetchRecords, filterRecordsByLocation } = useRecordStore();
+  const { records, loading, error, fetchRecords, filterRecordsByLocation } =
+    useRecordStore();
   const [searchQuery, setSearchQuery] = useState('');
   const [isExporting, setIsExporting] = useState(false);
   const debouncedSearchQuery = useDebounce(searchQuery, 500);
@@ -24,10 +25,14 @@ export function RecordsTemplate() {
     try {
       setIsExporting(true);
       await exportRecords();
-      showToast('success', `Successfully exported ${records.length} record${records.length > 1 ? 's' : ''}`);
+      showToast(
+        'success',
+        `Successfully exported ${records.length} record${records.length > 1 ? 's' : ''}`,
+      );
     } catch (error) {
       console.error('Export failed:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Failed to export records';
+      const errorMessage =
+        error instanceof Error ? error.message : 'Failed to export records';
       showToast('error', errorMessage);
     } finally {
       setIsExporting(false);
@@ -44,7 +49,6 @@ export function RecordsTemplate() {
     if (debouncedSearchQuery.trim()) {
       filterRecordsByLocation(debouncedSearchQuery.trim());
     } else {
-
       fetchRecords();
     }
   }, [debouncedSearchQuery, filterRecordsByLocation, fetchRecords]);
@@ -83,9 +87,9 @@ export function RecordsTemplate() {
       <div className="mb-6">
         <div className="flex items-center gap-4">
           <div className="relative flex-1 max-w-md">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search size={20} className="text-gray-400" />
-          </div>
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search size={20} className="text-gray-400" />
+            </div>
             <Input
               type="text"
               placeholder="Filter by location..."
@@ -102,7 +106,9 @@ export function RecordsTemplate() {
         </div>
         {searchQuery && (
           <Text variant="caption" className="text-gray-500 mt-2">
-            {loading.fetchAll ? 'Searching...' : `Filtering by: "${searchQuery}"`}
+            {loading.fetchAll
+              ? 'Searching...'
+              : `Filtering by: "${searchQuery}"`}
           </Text>
         )}
       </div>

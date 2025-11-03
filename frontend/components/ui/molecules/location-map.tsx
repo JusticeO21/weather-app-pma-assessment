@@ -8,20 +8,19 @@ import 'leaflet/dist/leaflet.css';
 
 const MapContainer = dynamic(
   () => import('react-leaflet').then((mod) => mod.MapContainer),
-  { ssr: false }
+  { ssr: false },
 );
 const TileLayer = dynamic(
   () => import('react-leaflet').then((mod) => mod.TileLayer),
-  { ssr: false }
+  { ssr: false },
 );
 const Marker = dynamic(
   () => import('react-leaflet').then((mod) => mod.Marker),
-  { ssr: false }
+  { ssr: false },
 );
-const Popup = dynamic(
-  () => import('react-leaflet').then((mod) => mod.Popup),
-  { ssr: false }
-);
+const Popup = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), {
+  ssr: false,
+});
 
 interface LocationMapProps {
   location: string;
@@ -35,7 +34,7 @@ interface Coordinates {
 
 /**
  * LocationMap Component
- * 
+ *
  * Displays an interactive OpenStreetMap using Leaflet for the given location.
  * Uses Nominatim for geocoding with caching to respect rate limits.
  */
@@ -57,7 +56,7 @@ export const LocationMap = ({ location, country }: LocationMapProps) => {
       try {
         const searchQuery = `${location}, ${country}`;
         const cacheKey = `geocode_${searchQuery}`;
-        
+
         // Check sessionStorage cache first to avoid rate limits
         const cached = sessionStorage.getItem(cacheKey);
         if (cached) {
@@ -74,7 +73,7 @@ export const LocationMap = ({ location, country }: LocationMapProps) => {
             headers: {
               'User-Agent': 'WeatherApp/1.0',
             },
-          }
+          },
         );
 
         if (!geocodeResponse.ok) {
@@ -89,9 +88,9 @@ export const LocationMap = ({ location, country }: LocationMapProps) => {
 
         const { lat, lon } = geocodeData[0];
         const coordinates = { lat: parseFloat(lat), lon: parseFloat(lon) };
-        
+
         sessionStorage.setItem(cacheKey, JSON.stringify(coordinates));
-        
+
         setCoords(coordinates);
         setLoading(false);
       } catch (err) {
@@ -139,7 +138,7 @@ export const LocationMap = ({ location, country }: LocationMapProps) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
       </MapContainer>
-      
+
       {/* Overlay with location label */}
       <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-lg z-[1000] pointer-events-none">
         <MapPin size={16} className="text-blue-600" />

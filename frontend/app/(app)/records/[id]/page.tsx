@@ -1,5 +1,5 @@
 // app/records/[id]/page.tsx
-"use client";
+'use client';
 
 import { useParams } from 'next/navigation';
 import { RecordDetailTemplate } from '@/components/ui/template/record-detail';

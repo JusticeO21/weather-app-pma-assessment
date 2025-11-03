@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-const COOLDOWN_MS = 3 * 60 * 1000; 
+const COOLDOWN_MS = 3 * 60 * 1000;
 
 export const useSaveCooldown = () => {
   const lastSaveTimes = useRef<Record<string, number>>({});

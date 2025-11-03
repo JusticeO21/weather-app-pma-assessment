@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { DayCard } from '../molecules';
 import { Text } from '../atoms';
-import {useForecastStore} from '@/stores';
+import { useForecastStore } from '@/stores';
 import { Skeleton, Card } from '../atoms';
 
 /**
@@ -14,7 +14,7 @@ import { Skeleton, Card } from '../atoms';
  * @param weekData - Array of daily weather data for the week
  */
 export const WeekForecast = () => {
-   const { forecast, loading } = useForecastStore();
+  const { forecast, loading } = useForecastStore();
   const [activeTab, setActiveTab] = useState<'today' | 'week'>('week');
 
   if (loading) {

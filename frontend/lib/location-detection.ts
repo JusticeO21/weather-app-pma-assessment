@@ -26,7 +26,7 @@ async function getGPSLocation(): Promise<string> {
     navigator.geolocation.getCurrentPosition(
       async (position) => {
         const { latitude, longitude } = position.coords;
-        
+
         try {
           const cityName = await reverseGeocode(latitude, longitude);
           resolve(cityName);
@@ -36,7 +36,7 @@ async function getGPSLocation(): Promise<string> {
       },
       (error) => {
         let errorMessage = 'Unable to get GPS location';
-        
+
         switch (error.code) {
           case error.PERMISSION_DENIED:
             errorMessage = 'GPS access denied';
@@ -48,13 +48,13 @@ async function getGPSLocation(): Promise<string> {
             errorMessage = 'GPS request timed out';
             break;
         }
-        
+
         reject(new Error(errorMessage));
       },
       {
         timeout: 10000,
         enableHighAccuracy: false,
-      }
+      },
     );
   });
 }
@@ -65,7 +65,10 @@ async function getGPSLocation(): Promise<string> {
  * @param longitude - Longitude coordinate
  * @returns City name
  */
-async function reverseGeocode(latitude: number, longitude: number): Promise<string> {
+async function reverseGeocode(
+  latitude: number,
+  longitude: number,
+): Promise<string> {
   try {
     const response = await fetch(
       `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10`,
@@ -73,7 +76,7 @@ async function reverseGeocode(latitude: number, longitude: number): Promise<stri
         headers: {
           'User-Agent': 'WeatherApp/1.0',
         },
-      }
+      },
     );
 
     if (!response.ok) {
@@ -81,14 +84,15 @@ async function reverseGeocode(latitude: number, longitude: number): Promise<stri
     }
 
     const data = await response.json();
-    
+
     // Try to get city name from various fields
-    const city = data.address?.city || 
-                 data.address?.town || 
-                 data.address?.village || 
-                 data.address?.county ||
-                 data.name;
-    
+    const city =
+      data.address?.city ||
+      data.address?.town ||
+      data.address?.village ||
+      data.address?.county ||
+      data.name;
+
     if (city) {
       return city;
     }
@@ -109,13 +113,13 @@ async function reverseGeocode(latitude: number, longitude: number): Promise<stri
 async function getIPLocation(): Promise<string> {
   try {
     const response = await fetch('https://ipapi.co/json/');
-    
+
     if (!response.ok) {
       throw new Error('IP location service unavailable');
     }
 
     const data: IPLocationResponse = await response.json();
-    
+
     if (data.city) {
       return data.city;
     }
@@ -135,14 +139,17 @@ async function getIPLocation(): Promise<string> {
  * @param defaultLocation - Default location to use if all methods fail (default: "London")
  * @returns Promise with location string
  */
-export async function detectUserLocation(defaultLocation: string = 'London'): Promise<string> {
+export async function detectUserLocation(
+  defaultLocation: string = 'London',
+): Promise<string> {
   try {
     const gpsLocation = await getGPSLocation();
     return gpsLocation;
   } catch (gpsError) {
     console.warn('GPS location failed:', gpsError);
-    
-    const errorMessage = gpsError instanceof Error ? gpsError.message : 'GPS failed';
+
+    const errorMessage =
+      gpsError instanceof Error ? gpsError.message : 'GPS failed';
     if (errorMessage.includes('denied')) {
       showToast('info', 'GPS access denied.');
     } else {
@@ -154,8 +161,11 @@ export async function detectUserLocation(defaultLocation: string = 'London'): Pr
       return ipLocation;
     } catch (ipError) {
       console.warn('IP location failed:', ipError);
-      
-      showToast('warning', `Could not detect location. Using ${defaultLocation} as default.`);
+
+      showToast(
+        'warning',
+        `Could not detect location. Using ${defaultLocation} as default.`,
+      );
       return defaultLocation;
     }
   }
@@ -169,14 +179,17 @@ export function isGeolocationSupported(): boolean {
   return 'geolocation' in navigator;
 }
 
-
-export async function checkGPSPermission(): Promise<'granted' | 'denied' | 'prompt'> {
+export async function checkGPSPermission(): Promise<
+  'granted' | 'denied' | 'prompt'
+> {
   if (!navigator.permissions) {
     return 'prompt';
   }
 
   try {
-    const result = await navigator.permissions.query({ name: 'geolocation' as PermissionName });
+    const result = await navigator.permissions.query({
+      name: 'geolocation' as PermissionName,
+    });
     return result.state;
   } catch (error) {
     return 'prompt';

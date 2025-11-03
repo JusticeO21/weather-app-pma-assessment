@@ -7,6 +7,7 @@ import csv
 import io
 from fastapi.responses import StreamingResponse
 
+
 class WeatherData(BaseModel):
     location: str
     country: str
@@ -16,6 +17,7 @@ class WeatherData(BaseModel):
     humidity: str
     pressure: str
     wind: str
+
 
 def create_weather_record(db: Session, data: WeatherData):
     """
@@ -41,7 +43,7 @@ def create_weather_record(db: Session, data: WeatherData):
         return record
 
     except SQLAlchemyError as e:
-        db.rollback()  
+        db.rollback()
         raise Exception(f"Database error while creating weather record: {str(e)}")
     except KeyError as e:
         raise Exception(f"Missing required field in input data: {str(e)}")
@@ -59,6 +61,7 @@ def get_all_weather_records(db: Session):
     except SQLAlchemyError as e:
         raise Exception(f"Database error while fetching records: {str(e)}")
 
+
 def get_weather_record_by_id(db: Session, record_id: int):
     """
     Retrieve a single weather record by its unique ID.
@@ -67,9 +70,14 @@ def get_weather_record_by_id(db: Session, record_id: int):
         record = db.query(WeatherRecord).filter(WeatherRecord.id == record_id).first()
         return record
     except SQLAlchemyError as e:
-        raise Exception(f"Database error while fetching record by ID {record_id}: {str(e)}")
+        raise Exception(
+            f"Database error while fetching record by ID {record_id}: {str(e)}"
+        )
     except Exception as e:
-        raise Exception(f"Unexpected error retrieving record by ID {record_id}: {str(e)}")
+        raise Exception(
+            f"Unexpected error retrieving record by ID {record_id}: {str(e)}"
+        )
+
 
 def get_weather_record_by_location(db: Session, location: str):
     """
@@ -85,6 +93,7 @@ def get_weather_record_by_location(db: Session, location: str):
     except SQLAlchemyError as e:
         raise Exception(f"Database error while fetching records by location: {str(e)}")
 
+
 def export_weather_records_controller(db: Session, record_id: int | None = None):
     """
     Export weather records (all or single) as a CSV stream.
@@ -99,21 +108,40 @@ def export_weather_records_controller(db: Session, record_id: int | None = None)
 
     output = io.StringIO()
     writer = csv.writer(output)
-    writer.writerow(["ID", "Location", "Country", "Main", "Description", "Temp (°C)", "Humidity", "Pressure", "Wind", "Saved On"])
+    writer.writerow(
+        [
+            "ID",
+            "Location",
+            "Country",
+            "Main",
+            "Description",
+            "Temp (°C)",
+            "Humidity",
+            "Pressure",
+            "Wind",
+            "Saved On",
+        ]
+    )
 
     for record in records:
-        writer.writerow([
-            record.id,
-            record.location,
-            record.country,
-            record.main,
-            record.description,
-            record.temp,
-            record.humidity,
-            record.pressure,
-            record.wind,
-            record.saved_on.strftime("%Y-%m-%d %H:%M:%S") if record.saved_on else ""
-        ])
+        writer.writerow(
+            [
+                record.id,
+                record.location,
+                record.country,
+                record.main,
+                record.description,
+                record.temp,
+                record.humidity,
+                record.pressure,
+                record.wind,
+                (
+                    record.saved_on.strftime("%Y-%m-%d %H:%M:%S")
+                    if record.saved_on
+                    else ""
+                ),
+            ]
+        )
 
     output.seek(0)
 
@@ -125,6 +153,7 @@ def export_weather_records_controller(db: Session, record_id: int | None = None)
         media_type="text/csv",
         headers={"Content-Disposition": f"attachment; filename={filename}"},
     )
+
 
 def update_weather_record_controller(db: Session, record_id: int, updates: dict):
     """
@@ -145,7 +174,9 @@ def update_weather_record_controller(db: Session, record_id: int, updates: dict)
 
     except SQLAlchemyError as e:
         db.rollback()
-        raise Exception(f"Database error while updating record ID {record_id}: {str(e)}")
+        raise Exception(
+            f"Database error while updating record ID {record_id}: {str(e)}"
+        )
     except Exception as e:
         db.rollback()
         raise Exception(f"Unexpected error updating record: {str(e)}")
@@ -167,7 +198,9 @@ def delete_weather_record_controller(db: Session, record_id: int):
 
     except SQLAlchemyError as e:
         db.rollback()
-        raise Exception(f"Database error while deleting record ID {record_id}: {str(e)}")
+        raise Exception(
+            f"Database error while deleting record ID {record_id}: {str(e)}"
+        )
     except Exception as e:
         db.rollback()
         raise Exception(f"Unexpected error deleting record: {str(e)}")

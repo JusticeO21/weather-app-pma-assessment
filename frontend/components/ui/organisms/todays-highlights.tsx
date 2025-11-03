@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import { Text, Button, Skeleton, Card } from '../atoms';
 import { MetricCard } from '../molecules';
 import { Save } from 'lucide-react';

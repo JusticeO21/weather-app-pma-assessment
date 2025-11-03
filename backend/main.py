@@ -17,7 +17,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], 
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -29,6 +29,7 @@ for _, module_name, _ in pkgutil.iter_modules(routes_pkg.__path__):
         app.include_router(module.router)
         print(f"✅ Loaded routes from: {module_name}")
 
+
 @app.get("/")
 def root():
     return {"message": "Weather App API"}
@@ -36,8 +37,5 @@ def root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(
-        "main:app",
-        host="0.0.0.0",
-        port=int(os.getenv("PORT", 8080))
-    )
+
+    uvicorn.run("main:app", host="0.0.0.0", port=int(os.getenv("PORT", 8080)))
