@@ -20,7 +20,7 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/")
+@router.get("")
 def list_weather_records(db: Session = Depends(get_db)):
     """
     Retrieve all saved weather records.
