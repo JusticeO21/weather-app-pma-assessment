@@ -32,3 +32,12 @@ for _, module_name, _ in pkgutil.iter_modules(routes_pkg.__path__):
 @app.get("/")
 def root():
     return {"message": "Weather App API"}
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=int(os.getenv("PORT", 8080))
+    )
