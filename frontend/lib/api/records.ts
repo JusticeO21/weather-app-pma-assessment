@@ -8,7 +8,7 @@ import { WeatherRecord } from '@/types/record';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export async function fetchRecords(): Promise<WeatherRecord[]> {
     try {
-        const response = await fetch(`${API_URL}/records`);
+        const response = await fetch(`${API_URL}/records/`);
         if (!response.ok) {
             throw new Error(`Failed to fetch records: ${response.statusText}`);
         }
@@ -28,7 +28,7 @@ export async function fetchRecords(): Promise<WeatherRecord[]> {
  */
 export async function filterRecords(location: string): Promise<WeatherRecord[]> {
     try {
-        const response = await fetch(`${API_URL}/records/filter?location=${location}`);
+        const response = await fetch(`${API_URL}/records/filter/?location=${location}`);
         if (response.status === 404) {
             return [];
         }
@@ -51,7 +51,7 @@ export async function filterRecords(location: string): Promise<WeatherRecord[]> 
  */
 export async function fetchRecord(id: number): Promise<WeatherRecord> {
     try {
-        const response = await fetch(`${API_URL}/records/${id}`);
+        const response = await fetch(`${API_URL}/records/${id}/`);
         if (!response.ok) {
             throw new Error(`Failed to fetch record ${id}: ${response.statusText}`);
         }
@@ -72,7 +72,7 @@ export async function fetchRecord(id: number): Promise<WeatherRecord> {
  */
 export async function deleteRecord(id: number): Promise<void> {
     try {
-        const response = await fetch(`${API_URL}/records/${id}`, {
+        const response = await fetch(`${API_URL}/records/${id}/`, {
             method: 'DELETE',
         });
         
@@ -95,7 +95,7 @@ export async function saveWeatherRecord(
     data: Omit<WeatherRecord, 'id' | 'saved_on'>
 ): Promise<WeatherRecord> {
     try {
-        const response = await fetch(`${API_URL}/records/save`, {
+        const response = await fetch(`${API_URL}/records/save/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
@@ -114,7 +114,7 @@ export async function saveWeatherRecord(
 
 
 export const exportRecords = async (id?: number): Promise<void> => {
-    let URL = `${API_URL}/records/export`;
+    let URL = `${API_URL}/records/export/`;
     if (id) URL = `${URL}?id=${id}`;
 
     const response = await fetch(URL, {
