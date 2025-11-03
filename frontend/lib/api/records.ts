@@ -5,7 +5,7 @@ import { WeatherRecord } from '@/types/record';
  * @returns {Promise<WeatherRecord[]>} A promise that resolves to an array of weather records
  * @throws {Error} If the request fails or returns a non-OK status
  */
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://weather-app-pma-assessment-production.up.railway.app";
 export async function fetchRecords(): Promise<WeatherRecord[]> {
     try {
         const response = await fetch(`${API_URL}/records`);

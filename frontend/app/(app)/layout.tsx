@@ -25,10 +25,10 @@ export default function AppLayout({
         
         if (loadingToastId) dismissToast(loadingToastId);
         
-        await Promise.all([
-          fetchWeather(location),
-          fetchForecast(location)
-        ]);
+     await Promise.allSettled([
+  fetchWeather(location),
+  fetchForecast(location),
+]);
       } catch (error) {
         console.error('Error fetching initial data:', error);
         if (loadingToastId) dismissToast(loadingToastId);

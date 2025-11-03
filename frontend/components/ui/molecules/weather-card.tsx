@@ -1,6 +1,7 @@
 import { Card, Text, WeatherIcon } from '../atoms';
 import { Skeleton } from '../atoms';
 import { LocationMap } from './location-map';
+import {ErrorBoundary} from '../../ErrorBoundary';
 
 interface WeatherCardProps {
   icon: string;
@@ -86,8 +87,9 @@ export const WeatherCard = ({
           </Text>
         </div>
       </div>
-         
+         <ErrorBoundary>
         <LocationMap location={location} country={country} />
+        </ErrorBoundary>
     </Card>
   );
 };

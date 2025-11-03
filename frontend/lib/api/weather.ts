@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://weather-app-pma-assessment-production.up.railway.app";
 
 export async function fetchWeatherData(location: string) {
     try {
