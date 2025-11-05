@@ -54,7 +54,7 @@ export const WeatherCard = ({
   }
 
   return (
-    <Card className="flex-1 flex flex-col h-full gap-5  justify-between !shadow-none py-0 !bg-transparent">
+    <Card className="flex-1 flex flex-col h-full gap:3 md:gap-5  justify-between shadow-none! py-0 bg-transparent!">
       <WeatherIcon icon={weather} priority={true} className="w-40 h-40" />
 
       <div className="flex flex-col items-baseline gap-4">
